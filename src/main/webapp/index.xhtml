@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+>
+<h:head>
+    <title>Upload file</title>
+</h:head>
+
+<f:metadata>
+    <f:viewAction action="#{fileUploadController.init()}"/>
+</f:metadata>
+
+<h:body>
+    <h:form id="form" enctype="multipart/form-data" prependId="false">
+        <h:inputFile id="file" value="#{fileUploadController.uploadedFile}"/>
+        <h:commandButton id="btn" value="Upload" action="#{fileUploadController.upload}"/>
+        <br/>
+    </h:form>
+    <h:form id="gcform" prependId="false">
+        <h:commandButton id="gcbtn" value="GC" action="#{fileUploadController.gc}"/>
+        <br/>
+    </h:form>
+
+    <h:outputText value="Heap size: "/><h:outputText id="heapsize" value="#{fileUploadController.heapSize}"/>
+
+    <h:dataTable value="#{fileUploadController.leakingClassStats}" var="cl">
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Class"/>
+            </f:facet>
+            <h:outputText value="#{cl.name}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Count"/>
+            </f:facet>
+            <h:outputText value="#{cl.instancesCount}"/>
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Size"/>
+            </f:facet>
+            <h:outputText value="#{cl.bytes}"/>
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
