@@ -97,4 +97,22 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>6_2023_1</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>fish.payara.maven.plugins</groupId>
+                        <artifactId>payara-micro-maven-plugin</artifactId>
+                        <version>1.4.0</version>
+                        <configuration>
+                            <payaraVersion>6.2023.1</payaraVersion>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
